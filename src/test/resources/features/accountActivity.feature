@@ -16,7 +16,7 @@ Feature: Account Activity
   Scenario: Default account check
     Given Go to the "Online Banking" page
     When Go to the "Account Activity" module
-    Then Verify that default account type
+    Then Account drop down should have "Savings" selected
 
 
   Scenario: Check the account drop down menu

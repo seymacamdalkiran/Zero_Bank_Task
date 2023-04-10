@@ -31,7 +31,7 @@ Feature: Pay Bills
       | amount99 | 22122023    | description | http://zero.webappsecurity.com/bank/pay-bills-saved-payee.html |
       | 9876     | 20nisan2023 | description | http://zero.webappsecurity.com/bank/pay-bills-saved-payee.html |
       | 9876     | [20nisan-?} | description | http://zero.webappsecurity.com/bank/pay-bills-saved-payee.html |
-  @wip
+
   Scenario Outline: Negative Test With Empty Credentials
     Given Go to the "Online Banking" page
     When Go to the "Pay Bills" module

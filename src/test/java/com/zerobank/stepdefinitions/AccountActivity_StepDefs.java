@@ -11,17 +11,16 @@ import java.util.List;
 
 public class AccountActivity_StepDefs {
     AccountActivityPage accountActivityPage=new AccountActivityPage();
-    @Then("Verify that default account type")
-    public void verify_that_default_account_type() {
-        WebElement accountSelect = accountActivityPage.accountSelect;
-        Select select=new Select(accountSelect);
+    @Then("Account drop down should have {string} selected")
+    public void account_drop_down_should_have_selected(String firstSelect) {
+        WebElement savingSelect = accountActivityPage.defaultSelect;
+        Select select=new Select(savingSelect);
         String actual = select.getFirstSelectedOption().getText();
-        String expected="Savings";
-        Assert.assertEquals(expected, actual);
+        Assert.assertEquals(firstSelect, actual);
     }
     @Then("Verify that account drop down menu")
     public void verify_that_account_drop_down_menu(List<String> expected) {
-        WebElement accountSelect = accountActivityPage.accountSelect;
+        WebElement accountSelect = accountActivityPage.defaultSelect;
         Select select=new Select(accountSelect);
         List<WebElement> options = select.getOptions();
          List<String> actual = BrowserUtils.getElementsText(options);

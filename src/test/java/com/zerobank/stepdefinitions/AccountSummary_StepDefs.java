@@ -7,6 +7,8 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 
@@ -37,5 +39,8 @@ public class AccountSummary_StepDefs {
         System.out.println("columnHeads = " + columnHeads);
         Assert.assertEquals(columnHeads, actual);
     }
-
+    @Then("the user clicks on {string} link on the Account Summary page")
+    public void the_user_clicks_on_link_on_the_Account_Summary_page(String name) {
+        accountSummaryPage.clickTheTableMenu(name);
+    }
 }
