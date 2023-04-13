@@ -1,5 +1,6 @@
 package com.zerobank.pages;
 
+import com.zerobank.utilities.BrowserUtils;
 import com.zerobank.utilities.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -31,7 +32,7 @@ public abstract class BasePage {
     public WebElement onlineBanking;
 
     public static void click(WebElement element){
-        element.click();
+        BrowserUtils.clickWithJS(element);
     }
     public void homeOnlineFeedback(String menu){
         Driver.get().findElement(By.xpath("//strong[text()='"+menu+"']")).click();

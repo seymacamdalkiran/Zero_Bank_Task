@@ -3,9 +3,11 @@ package com.zerobank.stepdefinitions;
 import com.zerobank.pages.PayBillsPage;
 import com.zerobank.utilities.BrowserUtils;
 import com.zerobank.utilities.Driver;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
+import io.cucumber.java.en.*;
+
 import org.junit.Assert;
+
+import java.util.Map;
 
 public class PayBills_DtepDefs {
     PayBillsPage payBillsPage=new PayBillsPage();
@@ -37,6 +39,10 @@ public class PayBills_DtepDefs {
             String validateMessage = payBillsPage.dateBox.getAttribute("validationMessage");
             Assert.assertEquals(message, validateMessage);
         }
+    }
+    @Given("Go to {string} tab")
+    public void go_to_tab(String string) {
+        payBillsPage.tapOnPayBilssaTabs(string);
     }
 
 }

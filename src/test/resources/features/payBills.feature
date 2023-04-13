@@ -4,7 +4,7 @@ Feature: Pay Bills
     Given The user should go to the website
     When The user should be on the login page
     And The user should be login "username" and "password"
-    Then The user should see username menu
+    Then The user should click back
 
   Scenario: Title check
     Given Go to the "Online Banking" page

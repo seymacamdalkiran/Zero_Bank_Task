@@ -2,11 +2,12 @@ package com.zerobank.stepdefinitions;
 
 import com.zerobank.pages.AccountActivityPage;
 import com.zerobank.utilities.BrowserUtils;
-import io.cucumber.java.en.Then;
+import io.cucumber.java.en.*;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AccountActivity_StepDefs {
@@ -31,4 +32,13 @@ public class AccountActivity_StepDefs {
         List<String> actual = accountActivityPage.getColumnNames();
         Assert.assertEquals(actual,expected);
     }
+
+    @Then("The user accesses the {string} tab")
+    public void the_user_accesses_the_tab(String string) {
+        accountActivityPage.selectShowOrFindTransactions(string);
+    }
+
+
+
+
 }

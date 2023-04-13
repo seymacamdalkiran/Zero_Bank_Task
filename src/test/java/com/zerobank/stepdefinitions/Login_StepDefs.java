@@ -26,6 +26,10 @@ public class Login_StepDefs {
         loginPage.loginOl(name, password);
 
     }
+    @When("The user should click back")
+    public void the_user_should_click_back() {
+        Driver.get().navigate().back();
+    }
     @Then("The user sould see {string} message")
     public void the_user_sould_see_message(String string) {
         String actual = loginPage.wrongWarningMessage.getText();
@@ -33,7 +37,6 @@ public class Login_StepDefs {
     }
     @Then("The user should see username menu")
     public void the_user_should_see_username_menu() {
-        Driver.get().navigate().back();
         Assert.assertTrue(loginPage.usernameText.isDisplayed());
     }
 
