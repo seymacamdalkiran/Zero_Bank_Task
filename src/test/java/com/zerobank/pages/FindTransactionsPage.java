@@ -8,7 +8,10 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class FindTransactionsPage extends BasePage{
@@ -29,6 +32,9 @@ public class FindTransactionsPage extends BasePage{
     @CacheLookup
     private WebElement description;
 
+    @FindBy(xpath = "//div[@id='filtered_transactions_for_account']//td[1]")
+    @CacheLookup
+    private List<WebElement> dateList;
     @FindBy(xpath = "//div[@id='filtered_transactions_for_account']//td[2]")
     @CacheLookup
     private List<WebElement> descriptionList;
@@ -88,6 +94,42 @@ public class FindTransactionsPage extends BasePage{
         select.selectByVisibleText(str);
         select.getFirstSelectedOption().click();
     }
+    public boolean isDateOrdered() throws ParseException {
+        List<Date> dates=new ArrayList<>();
+        List<String> stringOfDates = BrowserUtils.getElementsText(dateList);
+        for (String stringOfDate :stringOfDates) {
+            SimpleDateFormat sdFormat=new SimpleDateFormat("yyyy-MM-dd");
+            Date date=sdFormat.parse(stringOfDate);
+            dates.add(date);
+        }
+        for (int i = 0; i < dates.size(); i++) {
+            for (int j = i+1; j < dates.size() ; j++) {
+                if(dates.get(i).compareTo(dates.get(j))<=0){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 
-
+    public boolean isDateBetweenFromAndTo(String from,String to) throws ParseException {
+        List<Date> dates=new ArrayList<>();
+        List<String> stringOfDates = BrowserUtils.getElementsText(dateList);
+        SimpleDateFormat sdFormat=new SimpleDateFormat("yyyy-MM-dd");
+        Date fromD=sdFormat.parse(from);
+        Date toD=sdFormat.parse(to);
+        for (String stringOfDate :stringOfDates) {
+            Date date=sdFormat.parse(stringOfDate);
+            dates.add(date);
+        }
+        for (Date date : dates) {
+            if (toD.compareTo(date)<0) {
+                return false;
+            }
+            if(date.compareTo(fromD)<0){
+                return false;
+            }
+        }
+        return true;
+    }
 }

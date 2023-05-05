@@ -9,6 +9,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
@@ -25,12 +26,14 @@ public class FindTransactions_StepDefs {
         findTransactionsPage.tapOnTheFindButton();
     }
     @Then("Results table should only show transactions dates between {string} to {string}")
-    public void results_table_should_only_show_transactions_dates_between_to(String string, String string2) {
-
+    public void results_table_should_only_show_transactions_dates_between_to(String string, String string2) throws ParseException {
+        boolean dateBetweenFromAndTo = findTransactionsPage.isDateBetweenFromAndTo(string, string2);
+        Assert.assertTrue(dateBetweenFromAndTo);
     }
     @Then("The results should be sorted by most recent date")
-    public void the_results_should_be_sorted_by_most_recent_date() {
-
+    public void the_results_should_be_sorted_by_most_recent_date() throws ParseException {
+        boolean dateOrdered = findTransactionsPage.isDateOrdered();
+        Assert.assertTrue(dateOrdered);
     }
     @When("The user enters description {string}")
     public void the_user_enters_description(String string) {

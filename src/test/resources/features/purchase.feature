@@ -25,7 +25,6 @@ Feature: Purchase Foreign Currency
       |New Zealand (dollar) |
       |Singapore (dollar) |
 
-  @wip
   Scenario: Error message for not selecting currency
     When User tries to calculate cost without selecting a currency
     Then Error message should be displayed
